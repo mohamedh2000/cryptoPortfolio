@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CryptoTab = ({ id, name, symbol, img, price, circ_supply, total_supply, cmc_rank, platforms }) => {
+const CryptoTab = ({ id, name, symbol, img, price, circ_supply, total_supply, cmc_rank, platforms, openDashboard }) => {
 
     const priceData = price['USD'];
 
@@ -19,13 +19,9 @@ const CryptoTab = ({ id, name, symbol, img, price, circ_supply, total_supply, cm
         }
     }
 
-    function clickedTab() {
-        window.openDashboard(id);
-    }
-
     return (
     <button className=".select-none focus:ring-2 focus:ring-blue-600  bg-white rounded-xl 
-                        shadow-lg overflow-hidden w-1/2 my-4 hover:bg-gray-50" style={{marginLeft:'25%'}} onClick={() => {clickedTab()}}>
+                        shadow-lg overflow-hidden w-1/2 my-4 hover:bg-gray-50" style={{marginLeft:'25%'}} onClick={() => {openDashboard(id)}}>
         <div className="md:flex justify-center ">
             <div className="p-8">
                 <h1 className="text-lg uppercase tracking-wide font-semibold"> {symbol}</h1>
