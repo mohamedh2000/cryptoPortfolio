@@ -4,11 +4,16 @@ import axios from 'axios';
 import $ from 'jquery';
 import CryptoTab from '../Components/CryptoTab';
 import CryptoModule from '../Components/CryptoModule';
+import { motion } from 'framer-motion';
 
 export default function HomePage() {
     const [listings, setListings] = useState([]);
     const [chosenCrypto, setChosenCrypto] = useState(false);
     const [chosenCryptoData, setChosenCryptoData] = useState();
+    const variants = {
+        isClicked: {width: '50%'},
+        notClicked: {width: '100%'}
+    }
 
     useEffect(() => {
         setChosenCrypto(false);
@@ -28,22 +33,31 @@ export default function HomePage() {
     }
 
     return (
-        <div id="crypto_col" className={chosenCrypto ? 'row' : ''} style={{display:'flex'}}>
-            <ul id="list_cryptos" className={chosenCrypto ? 'column' : ''} style={{width: chosenCrypto ? '50%' : '100%'}}>
+        <div id="crypto_col" className={chosenCrypto ? 'absolute row w-full h-screen' : 'absolute w-full h-screen'} style={{display:'flex', marginTop: '50px'}}>
+                <motion.ui
+                    id="list_cryptos" 
+                    className={chosenCrypto ? 'column' : ''} 
+                    variants={variants}
+                    animate={chosenCrypto ? "isClicked" : "notClicked"}
+                    transition={{ duration: 0.21, tween: 'tween'}}
+                    style={{listStyleType: "none", overflow:'scroll'}}
+                >
                 {
-                    listings.map(crypto_data =>
-                        <li className=".flex" >
-                            <CryptoTab id={crypto_data.id} name={crypto_data.name} symbol={crypto_data.symbol}
-                                img="./crypto-broker.jpeg" price={crypto_data.quote}
-                                circ_supply={crypto_data.circulating_supply} total_supply={crypto_data.total_supply}
-                                cmc_rank={crypto_data.cmc_rank} platforms={crypto_data.platforms} openDashboard={openDashboard} />
-                        </li>
-                    )
-                }
-            </ul>
+                        listings.map(crypto_data =>
+                            <li className=".flex" >
+                                <CryptoTab id={crypto_data.id} name={crypto_data.name} symbol={crypto_data.symbol}
+                                    img="./crypto-broker.jpeg" price={crypto_data.quote}
+                                    circ_supply={crypto_data.circulating_supply} total_supply={crypto_data.total_supply}
+                                    cmc_rank={crypto_data.cmc_rank} platforms={crypto_data.platforms} openDashboard={openDashboard} />
+                            </li>
+                        )
+                    }
+
+                </motion.ui>
+
             {
                 chosenCrypto ? 
-                < CryptoModule data={chosenCryptoData}/> //width needs to be 50% too 
+                < CryptoModule data={chosenCryptoData}/> 
                 :
                 <></>
             }

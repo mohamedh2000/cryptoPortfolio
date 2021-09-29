@@ -1,11 +1,12 @@
 import HomePage from './home';
+import NavBar from '../Components/NavBar.js';
 import '../styles/Home.module.css';
-import "animate.css";
 
 export default function Home() {
 
   return (
-    <div>
+    <div className="flex">
+      <NavBar />
       <HomePage />
     </div>
   )

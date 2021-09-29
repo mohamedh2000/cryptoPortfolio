@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark, faChartPie, faInfoCircle, faComments } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'framer-motion';
 
 const CryptoModule = ({ data }) => {
 
     const [bookmarkActive, setBookmarkActive] = useState(false);
     const [portfolioActive, setPortfolioActive] = useState(false);
     const [chatActive, setChatActive] = useState(false);
-    const [dataTab, setDataTab] = useState(false);
+    const [dataTab, setDataTab] = useState(true);
 
     const activeTabCSS = "group bg-yellow-400 p-1.5 mx-4 rounded-xl font-medium shadow-xl";
     const inActiveTabCSS = "transform group hover:bg-yellow-200 hover:scale-105 p-1.5 mx-4 rounded-xl font-light hover:shadow-md";
@@ -36,11 +37,14 @@ const CryptoModule = ({ data }) => {
     }
 
     return (
-    <div className=".select-none shadow-2xl bg-white rounded-xl flex
-                        shadow-lg overflow-hidden w-1/2 my-4 
-                         w-1/2 absolute justify-center right-0 mr-8 mt-8 p-8 flex-col" >
-                            {console.log(data)}
-            <div className="w-full h-1/10 r-0 my-1">
+
+        <motion.div className=".select-none shadow-2xl bg-white rounded-xl flex
+        shadow-lg w-1/2 my-4 right-0 justify-center mr-8 p-8 flex-col sticky"
+        style={{y: '-100%', height:'80vh'}}
+        animate={{ y: '100px'}}
+        transition={{ type: "easein"}}
+        >
+            <div className="w-full h-1/10 r-0 my-1 top-0">
                 <button 
                 className={dataTab ? activeTabCSS : inActiveTabCSS}
                 onClick={() => {activateButton("data")}}>
@@ -65,13 +69,12 @@ const CryptoModule = ({ data }) => {
                     <FontAwesomeIcon icon={faBookmark} /> 
                 </button>
             </div>
-            <div className="relative w-full my-1">
-                Hello
-
+            <div className=" w-full my-1 h-full">
+                {console.log(data)}
             </div>
 
 
-        </div>)
+            </motion.div>)
 
 }
 
