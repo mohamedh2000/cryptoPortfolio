@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const CryptoTab = ({ id, name, symbol, img, price, circ_supply, total_supply, cmc_rank, platforms, openDashboard }) => {
+const CryptoTab = ({ id, name, symbol, img, price, circ_supply, total_supply, 
+    cmc_rank, platforms, openDashboard}) => {
 
     const priceData = price['USD'];
 
@@ -22,8 +23,8 @@ const CryptoTab = ({ id, name, symbol, img, price, circ_supply, total_supply, cm
 
     return (
 
-        <motion.button className="select-none focus:ring-2 focus:ring-blue-600  bg-white rounded-xl 
-        shadow-lg overflow-hidden my-4 hover:bg-gray-50 w-1/2 " style={{ marginLeft: '25%' }} onClick={() => { openDashboard(id) }}
+        <motion.button className="select-none focus:ring-2 active:ring-yellow-400 focus:ring-yellow-200  bg-white rounded-xl 
+        shadow-xl overflow-hidden my-4 hover:bg-gray-50 w-1/2 " style={{ marginLeft: '25%' }} onClick={() => { openDashboard(id) }}
             whileHover={{ translateY: -7.0 }}
         >
             <div className="md:flex justify-center">

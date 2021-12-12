@@ -6,10 +6,11 @@ import CryptoTab from '../Components/CryptoTab';
 import CryptoModule from '../Components/CryptoModule';
 import { motion } from 'framer-motion';
 
-export default function HomePage() {
+export default function CryptoMarket() {
     const [listings, setListings] = useState([]);
     const [chosenCrypto, setChosenCrypto] = useState(false);
     const [chosenCryptoData, setChosenCryptoData] = useState();
+
     const variants = {
         isClicked: {width: '50%'},
         notClicked: {width: '100%'}
@@ -33,7 +34,7 @@ export default function HomePage() {
     }
 
     return (
-        <div id="crypto_col" className={chosenCrypto ? 'absolute row w-full h-screen' : 'absolute w-full h-screen'} style={{display:'flex', marginTop: '50px'}}>
+        <div id="crypto_col" className={chosenCrypto ? 'absolute row w-full h-screen' : 'absolute w-full h-screen'} style={{display:'flex', marginTop: '80px'}}>
                 <motion.ui
                     id="list_cryptos" 
                     className={chosenCrypto ? 'column' : ''} 
