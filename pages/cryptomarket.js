@@ -27,7 +27,7 @@ export default function CryptoMarket() {
     }, []);
 
     function openDashboard (cid) {
-          axios(`/api/crypto/${cid}`).then(async (data) => {
+          axios(`/api/crypto/id/${cid}`).then(async (data) => {
               setChosenCryptoData(await data['data']['data'][cid]);
               setChosenCrypto(true);
           })      
